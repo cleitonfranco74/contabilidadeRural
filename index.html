@@ -461,6 +461,7 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <div class="saida"><span>Parceria: líquido</span><b id="ctPar">—</b></div>
         <div class="saida ouro"><span>Economia da parceria</span><b id="ctEco">—</b></div>
       </div>
+      <div class="grafico baixo"><canvas id="gContrato" aria-label="Quanto fica com o proprietário e quanto vai para o imposto no arrendamento e na parceria"></canvas></div>
       <div class="nota vermelha small"><b>Operação Declara Grãos.</b> Contrato de parceria no papel com aluguel fixo mensal na prática, sem nota fiscal da parte do proprietário, é arrendamento disfarçado. O resultado é autuação por sonegação, multa pesada e possível bloqueio de bens.</div>
     </div>
   </div>
@@ -510,6 +511,7 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
     <div class="sim">
       <div class="cab"><h4>Plano de ação da fazenda</h4><span class="eyebrow">Da planilha do Tópico 2</span></div>
       <div class="saidas" id="pdcaPainel"></div>
+      <div class="grafico baixo"><canvas id="gPDCA" aria-label="Ações do plano por etapa do PDCA, concluídas e pendentes"></canvas></div>
       <div class="tabela"><table>
         <thead><tr><th>Etapa</th><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Meta</th><th>Situação</th></tr></thead>
         <tbody id="pdcaTab"></tbody>
@@ -577,6 +579,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
       <tbody id="ganttTab"></tbody>
     </table></div>
     <div class="legenda"><span><i style="background:var(--accent)"></i>Campo</span><span><i style="background:var(--gold)"></i>Administrativo</span><span><i style="background:var(--blue)"></i>Mecânica</span><span id="ganttTotal" class="mono"></span></div>
+    <p class="small muted">Quantas atividades acontecem ao mesmo tempo em cada mês, por área. Os picos mostram onde a equipe e o caixa ficam mais pressionados.</p>
+      <div class="grafico baixo"><canvas id="gGantt" aria-label="Número de atividades simultâneas por mês do ano agrícola"></canvas></div>
   </div>
 
   <div class="bloco">
@@ -737,6 +741,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
       <div class="cartao"><span class="tag">Receita</span><h4>O que foi vendido</h4><p class="small">Valor obtido pela venda da produção (Crepaldi).</p></div>
       <div class="cartao ouro"><span class="tag">Renda</span><h4>Tudo o que foi produzido</h4><p class="small">Vendas + consumo da família + uso interno (milho para engorda) + formação de estoques (Rezende e Oliveira).</p></div>
     </div>
+    <p class="small muted">Ilustração: custo fixo de R$ 1,2 milhão por ano e custo variável de R$ 6.120 por hectare. Quanto maior a área, mais o custo fixo se dilui e menor o custo médio por hectare (linha tracejada, eixo da direita).</p>
+      <div class="grafico alto"><canvas id="gCustos" aria-label="Custo fixo, variável e total conforme a área plantada, e custo médio por hectare"></canvas></div>
     <p class="small muted">Custos diretos ligam-se a uma cultura (sementes de soja). Indiretos são compartilhados e exigem rateio (conservação geral de máquinas). Custeio por absorção inclui fixos e variáveis no custo do produto; custeio variável considera só os variáveis e serve para decisões rápidas.</p>
   </div>
 
@@ -873,6 +879,10 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
       </div>
     </div>
 
+    <div class="bloco"><h4>O ponto de equilíbrio no gráfico</h4><p class="small muted">A reta da receita cruza a do custo total (fixos + variáveis) em R$ 41 milhões. Tudo o que a fazenda fatura acima disso é lucro antes dos impostos.</p>
+      <div class="grafico alto"><canvas id="gEquilibrio" aria-label="Receita e custo total da Fazenda Três Safras conforme o faturamento, com o ponto de equilíbrio"></canvas></div>
+    </div>
+
     <div class="sim" id="simSoja">
       <div class="cab"><h4>E se o preço da soja cair?</h4><span class="eyebrow">Simulador de sensibilidade</span></div>
       <p class="small muted">Custo variável da soja mantido em R$ 6.120/ha, porque os insumos já foram comprados. Milho e feijão no cenário base.</p>
@@ -888,6 +898,7 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <div class="saida azul"><span>Variação do resultado × receita total</span><b id="sjVar">—</b></div>
       </div>
       <p class="small" id="sjLeitura"></p>
+      <div class="grafico "><canvas id="gSensib" aria-label="Resultado da fazenda e margem da soja conforme o preço da saca"></canvas></div>
     </div>
   </div>
 
@@ -914,6 +925,7 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <div class="saida ouro"><span>Produtividade mínima</span><b id="nvProdMin">—</b></div>
         <div class="saida azul"><span>Margem de segurança</span><b id="nvFolga">—</b></div>
       </div>
+      <div class="grafico baixo"><canvas id="gNiv" aria-label="Receita por hectare comparada aos três níveis de custo por hectare"></canvas></div>
       <p class="small muted">A folga é a mesma pelo preço ou pela produtividade: receita é preço × quantidade, então perder 16% em um ou no outro dá no mesmo. Os R$ 1.441,46 e R$ 553,52 que levam do custo variável ao COE e ao COT são a fatia de 34,36% da estrutura que cabe à soja (a parte dela no faturamento) dividida pelos 2.980 ha.</p>
     </div>
   </div>
@@ -990,6 +1002,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
       <div class="cartao"><span class="tag">Agricultura · soja e milho</span><p class="small">Meses seguidos de despesas pesadas e faturamento concentrado na colheita. Desafio: atravessar o “vale da dívida” sem perder liquidez.</p></div>
       <div class="cartao azul"><span class="tag">Agroindústria · leite e queijo</span><p class="small">Receitas e despesas constantes. Desafio: margens curtas e alta sensibilidade a investimentos, que derrubam o saldo. Caso Montes Claros: superávit de R$ 10 mil por mês e um tanque de R$ 40 mil à vista em março provoca o alerta vermelho.</p></div>
     </div>
+    <p class="small muted">Parcela da receita do ano que entra em cada mês: na lavoura ela se concentra nas colheitas; no leite, se divide igualmente.</p>
+      <div class="grafico "><canvas id="gSazon" aria-label="Distribuição da receita ao longo do ano na agricultura e na agroindústria de leite"></canvas></div>
   </div>
 
   <div class="bloco">
@@ -1015,6 +1029,7 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <div class="saida"><span>Saldo final em agosto</span><b id="fcFinal">—</b></div>
       </div>
       <div class="grafico alto"><canvas id="gFC" aria-label="Saldo do mês em barras e saldo acumulado em linha"></canvas></div>
+      <div class="grafico "><canvas id="gFCes" aria-label="Entradas e saídas operacionais por mês"></canvas></div>
       <div class="botoes"><button type="button" class="sec" id="fcMinBtn">Usar o custeio mínimo</button><button type="button" class="sec" id="fcReset">Voltar ao exemplo</button></div>
     </div>
     <div class="nota verde"><b>Plano de ação em quatro passos.</b> Registre tudo, todos os dias. Separe e categorize (contas distintas para família e fazenda; custo, despesa ou investimento). Projete 3 a 6 meses à frente: com 90 dias de antecedência dá para renegociar prazos, antecipar recebíveis ou buscar crédito rural barato. Analise e ajuste em reunião mensal de orçado × realizado.</div>
@@ -1072,6 +1087,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <p><b>Redutor da Lei 15.270/2025</b>, sobre o imposto da tabela: até R$ 60.000 de rendimento tributável anual o imposto é zerado; de R$ 60.000,01 a R$ 88.200 há redução decrescente; acima de R$ 88.200, sem redutor.</p>
       </div>
     </div>
+    <p class="small muted">Alíquota marginal (degraus) e alíquota efetiva (imposto ÷ base) pela tabela de 2026, sem o redutor. Os pontos marcam as duas bases do simulador abaixo. A efetiva sobe devagar e nunca chega a 27,5%.</p>
+      <div class="grafico "><canvas id="gIRPF" aria-label="Alíquota marginal e alíquota efetiva do IRPF conforme a base de cálculo"></canvas></div>
     <div class="sim" id="simPF">
       <div class="cab"><h4>Produtor pessoa física: os dois caminhos da base</h4><span class="eyebrow">Simulador · exemplo do Tópico 6</span></div>
       <div class="campos">
@@ -1083,6 +1100,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         <tbody id="pfTab"></tbody>
       </table></div>
       <p class="small" id="pfLeitura"></p>
+      <div class="grafico "><canvas id="gPF" aria-label="IRPF pelo resultado real e pela presunção de 20% conforme o peso das despesas na receita"></canvas></div>
+      <p class="small muted">Para a receita informada: o imposto pelo resultado real cai à medida que as despesas comprovadas crescem; o da presunção não muda. As linhas se cruzam quando as despesas chegam a 80% da receita, porque aí as duas bases ficam iguais. Bases de até R$ 60 mil ficam com imposto zero pelo redutor, e nas de R$ 60 mil a R$ 88,2 mil o gráfico mostra o imposto da tabela, que é o teto.</p>
       <p class="small muted">O cálculo considera apenas a atividade rural como rendimento. Na faixa de R$ 60.000,01 a R$ 88.200 o redutor existe, mas não é calculado aqui: o imposto real será menor que o da tabela.</p>
     </div>
   </div>
@@ -1108,6 +1127,8 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
         </table></div>
         <div class="grafico"><canvas id="gLP" aria-label="Composição da carga tributária do Lucro Presumido"></canvas></div>
       </div>
+      <p class="small muted">Carga do Lucro Presumido em percentual da receita: fica em 5,93% até R$ 3 milhões de faturamento (base de IRPJ de R$ 240 mil) e sobe aos poucos com o adicional de 10%.</p>
+      <div class="grafico baixo"><canvas id="gLPcarga" aria-label="Carga tributária do Lucro Presumido em percentual da receita conforme o faturamento"></canvas></div>
       <div class="nota small"><b>Atenção à presunção.</b> Os 20% são do produtor pessoa física. No Lucro Presumido da PJ rural a base é de 8% para o IRPJ e 12% para a CSLL. Usar 20% na PJ infla o imposto em cerca de 40%.</div>
     </div>
   </div>
@@ -1754,6 +1775,170 @@ footer { border-top: 1px solid var(--line); margin-top: 3rem; padding-block: 1.6
     var t; window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(desenha, 150); });
   })();
 
+
+
+  /* ---------- gráficos adicionais ---------- */
+  (function () {
+    var pctTick = function (v) { return fmt(v, 0) + "%"; };
+    var pctTip = function (d) { return function (c) { return (c.dataset.label ? c.dataset.label + ": " : "") + fmt(c.parsed.y, d === undefined ? 1 : d) + "%"; }; };
+    var zeroGrid = function (c) { return c.tick && c.tick.value === 0 ? tok("--muted") : tok("--line"); };
+    var y1 = function (cb) { return { position: "right", grid: { drawOnChartArea: false }, ticks: { color: tok("--muted"), font: { family: "IBM Plex Mono", size: 11 }, callback: cb }, border: { color: tok("--line") } }; };
+
+    /* T1 */
+    chart("gContrato", function () {
+      var r = val("ctReceita");
+      return { type: "bar", data: { labels: ["Arrendamento", "Parceria"], datasets: [
+        { label: "Fica com o proprietário", data: [r * 0.725, r * 0.945], backgroundColor: tok("--accent") },
+        { label: "Imposto de renda", data: [r * 0.275, r * 0.055], backgroundColor: tok("--neg") }
+      ] }, options: { indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true, ticks: { callback: mil } }, y: { stacked: true } }, plugins: { legend: { position: "bottom" } } } };
+    });
+    $("ctReceita").addEventListener("input", function () { draw("gContrato"); });
+
+    /* T2 PDCA */
+    chart("gPDCA", function () {
+      var ks = ["P", "D", "C", "A"];
+      var feitas = ks.map(function (k) { return acoes.filter(function (a) { return a[0] === k && a[5] === "Concluída"; }).length; });
+      var todas = ks.map(function (k) { return acoes.filter(function (a) { return a[0] === k; }).length; });
+      return { type: "bar", data: { labels: ks.map(function (k) { return k + " · " + etapas[k]; }), datasets: [
+        { label: "Concluídas", data: feitas, backgroundColor: tok("--accent") },
+        { label: "Pendentes", data: todas.map(function (t, i) { return t - feitas[i]; }), backgroundColor: tok("--gold-soft"), borderColor: tok("--gold"), borderWidth: 1 }
+      ] }, options: { indexAxis: "y", scales: { x: { stacked: true, beginAtZero: true, ticks: { stepSize: 1 } }, y: { stacked: true } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ": " + c.parsed.x + (c.parsed.x === 1 ? " ação" : " ações"); } } } } } };
+    });
+
+    /* T2 Gantt */
+    chart("gGantt", function () {
+      var areas = { "": [], adm: [], mec: [] };
+      Object.keys(areas).forEach(function (k) { for (var m = 0; m < 12; m++) areas[k].push(0); });
+      gantt.forEach(function (g, i) {
+        var ini = parseInt($("gI" + i).value, 10) || 0, dur = parseInt($("gD" + i).value, 10) || 0;
+        for (var m = ini; m > 0 && m < ini + dur && m <= 12; m++) areas[g[4]][m - 1]++;
+      });
+      return { type: "bar", data: { labels: MESES, datasets: [
+        { label: "Campo", data: areas[""], backgroundColor: tok("--accent") },
+        { label: "Administrativo", data: areas.adm, backgroundColor: tok("--gold") },
+        { label: "Mecânica", data: areas.mec, backgroundColor: tok("--blue") }
+      ] }, options: { scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, ticks: { stepSize: 1 } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: function (c) { return c.dataset.label + ": " + c.parsed.y; } } } } } };
+    });
+    $("ganttTab").addEventListener("input", function () { draw("gGantt"); });
+
+    /* T3 custos fixos e variáveis */
+    chart("gCustos", function () {
+      var CF = 1200000, CV = 6120, xs = [];
+      for (var a = 100; a <= 1000; a += 50) xs.push(a);
+      return { type: "line", data: { labels: xs, datasets: [
+        { label: "Custo fixo", data: xs.map(function () { return CF; }), borderColor: tok("--blue"), backgroundColor: tok("--blue"), pointRadius: 0, tension: 0 },
+        { label: "Custo variável", data: xs.map(function (a) { return CV * a; }), borderColor: tok("--gold"), backgroundColor: tok("--gold"), pointRadius: 0, tension: 0 },
+        { label: "Custo total", data: xs.map(function (a) { return CF + CV * a; }), borderColor: tok("--neg"), backgroundColor: tok("--neg"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Custo médio por ha (eixo direito)", data: xs.map(function (a) { return CF / a + CV; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), borderDash: [6, 4], pointRadius: 0, tension: 0.3, yAxisID: "y1" }
+      ] }, options: { interaction: { mode: "index", intersect: false },
+        scales: { x: { title: { display: true, text: "Área plantada (ha)", color: tok("--muted") }, ticks: { maxTicksLimit: 10 } }, y: { beginAtZero: true, ticks: { callback: mil } }, y1: y1(function (v) { return fmt(v); }) },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return c[0].label + " ha"; }, label: function (c) { return c.dataset.label.replace(" (eixo direito)", "") + ": " + brl(c.parsed.y); } } } } } };
+    });
+
+    /* T4 ponto de equilíbrio */
+    chart("gEquilibrio", function () {
+      var CF = 17300000, R = 48396690 / 83734424, pts = [];
+      for (var x = 0; x <= 100e6; x += 5e6) pts.push(x);
+      var PE = CF / (1 - R);
+      return { type: "line", data: { datasets: [
+        { label: "Receita", data: pts.map(function (x) { return { x: x, y: x }; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Custo total", data: pts.map(function (x) { return { x: x, y: CF + R * x }; }), borderColor: tok("--neg"), backgroundColor: tok("--neg"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Custos fixos", data: pts.map(function (x) { return { x: x, y: CF }; }), borderColor: tok("--blue"), backgroundColor: tok("--blue"), borderDash: [5, 4], pointRadius: 0 },
+        { label: "Ponto de equilíbrio (R$ 41,0 mi)", data: [{ x: PE, y: PE }], borderColor: tok("--gold"), backgroundColor: tok("--gold"), pointRadius: 8, pointStyle: "rectRot", showLine: false },
+        { label: "Faturamento previsto (R$ 83,7 mi)", data: [{ x: 83734424, y: 83734424 }], borderColor: tok("--ink"), backgroundColor: tok("--ink"), pointRadius: 6, showLine: false }
+      ] }, options: { scales: { x: { type: "linear", min: 0, max: 100e6, title: { display: true, text: "Faturamento (R$)", color: tok("--muted") }, ticks: { callback: mil } }, y: { beginAtZero: true, max: 100e6, ticks: { callback: mil } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return "Faturamento " + brl(c[0].parsed.x); }, label: function (c) { return c.dataset.label.split(" (")[0] + ": " + brl(c.parsed.y); } } } } } };
+    });
+
+    /* T4 sensibilidade */
+    chart("gSensib", function () {
+      var xs = []; for (var q = 40; q <= 170; q += 5) xs.push(q);
+      var p = val("sjPreco"), res = function (x) { return SC * x - CV + OUTRAS - FIXOS; };
+      return { type: "line", data: { datasets: [
+        { label: "Resultado da fazenda (antes dos impostos)", data: xs.map(function (x) { return { x: x, y: res(x) }; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Margem da soja", data: xs.map(function (x) { return { x: x, y: SC * x - CV }; }), borderColor: tok("--gold"), backgroundColor: tok("--gold"), pointRadius: 0, tension: 0 },
+        { label: "Preço escolhido", data: [{ x: p, y: res(p) }], borderColor: tok("--ink"), backgroundColor: tok("--ink"), pointRadius: 7, showLine: false }
+      ] }, options: { scales: { x: { type: "linear", min: 40, max: 170, title: { display: true, text: "Preço da saca de soja (R$)", color: tok("--muted") }, ticks: { stepSize: 10 } }, y: { ticks: { callback: mil }, grid: { color: zeroGrid } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return "Soja a " + brl(c[0].parsed.x, 2); }, label: function (c) { return c.dataset.label + ": " + brl(c.parsed.y); } } } } } };
+    });
+    $("sjPreco").addEventListener("input", function () { draw("gSensib"); });
+
+    /* T4 nivelamento */
+    chart("gNiv", function () {
+      var rec = val("nvProd") * val("nvPreco");
+      return { type: "bar", data: { labels: ["Receita por ha", "Custo variável", "COE", "COT", "Custo informado"], datasets: [
+        { data: [rec, 6120, 7561.46, 8114.98, val("nvCusto")], backgroundColor: [tok("--accent"), tok("--gold-soft"), tok("--gold"), tok("--neg"), tok("--blue")], borderRadius: 3 }
+      ] }, options: { indexAxis: "y", plugins: { legend: { display: false }, tooltip: { callbacks: { label: function (c) { return brl(c.parsed.x, 2) + " por ha"; } } } }, scales: { x: { beginAtZero: true, ticks: { callback: function (v) { return fmt(v); } } } } } };
+    });
+    ["nvCusto", "nvProd", "nvPreco"].forEach(function (id) { $(id).addEventListener("input", function () { draw("gNiv"); }); });
+    document.querySelectorAll("[data-niv]").forEach(function (b) { b.addEventListener("click", function () { draw("gNiv"); }); });
+
+    /* T5 sazonalidade */
+    chart("gSazon", function () {
+      var tot = EX_ENT.reduce(function (a, b) { return a + b; }, 0);
+      return { type: "line", data: { labels: MESES, datasets: [
+        { label: "Agricultura (soja e milho safrinha)", data: EX_ENT.map(function (v) { return v / tot * 100; }), borderColor: tok("--gold"), backgroundColor: tok("--gold-soft"), fill: true, tension: 0.3, cubicInterpolationMode: "monotone", pointRadius: 3 },
+        { label: "Agroindústria (leite e queijo)", data: MESES.map(function () { return 100 / 12; }), borderColor: tok("--blue"), backgroundColor: tok("--blue"), tension: 0, pointRadius: 3 }
+      ] }, options: { scales: { y: { beginAtZero: true, ticks: { callback: pctTick } } }, plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: pctTip(1) } } } } };
+    });
+
+    /* T5 entradas e saídas */
+    chart("gFCes", function () {
+      var e = [], sd = [];
+      for (var i = 0; i < 12; i++) { e.push(val("fcE" + i)); sd.push(val("fcS" + i)); }
+      return { type: "bar", data: { labels: MESES, datasets: [
+        { label: "Entradas operacionais", data: e, backgroundColor: tok("--accent") },
+        { label: "Saídas operacionais", data: sd, backgroundColor: tok("--neg") }
+      ] }, options: { scales: { y: { beginAtZero: true, ticks: { callback: mil } } }, plugins: { legend: { position: "bottom" } } } };
+    });
+    $("simFC").addEventListener("input", function () { draw("gFCes"); });
+    ["fcMinBtn", "fcReset"].forEach(function (id) { $(id).addEventListener("click", function () { draw("gFCes"); }); });
+
+    /* T6 IRPF */
+    var tabela = function (b) { if (b <= 0) return { imp: 0, al: 0 }; for (var i = 0; i < TAB.length; i++) if (b <= TAB[i][0]) break; return { imp: Math.max(0, b * TAB[i][1] - TAB[i][2]), al: TAB[i][1] }; };
+    chart("gIRPF", function () {
+      var xs = []; for (var b = 0; b <= 200000; b += 1000) xs.push(b);
+      var r = val("pfReceita"), bases = [Math.max(0, r - val("pfDesp")), r * 0.2].filter(function (b) { return b > 0 && b <= 200000; });
+      return { type: "line", data: { datasets: [
+        { label: "Alíquota marginal", data: xs.map(function (b) { return { x: b, y: tabela(b).al * 100 }; }), borderColor: tok("--gold"), backgroundColor: tok("--gold"), stepped: true, pointRadius: 0 },
+        { label: "Alíquota efetiva", data: xs.map(function (b) { return { x: b, y: b ? tabela(b).imp / b * 100 : 0 }; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Bases do simulador", data: bases.map(function (b) { return { x: b, y: tabela(b).imp / b * 100 }; }), borderColor: tok("--ink"), backgroundColor: tok("--ink"), pointRadius: 6, showLine: false }
+      ] }, options: { scales: { x: { type: "linear", min: 0, max: 200000, title: { display: true, text: "Base de cálculo anual (R$)", color: tok("--muted") }, ticks: { callback: mil } }, y: { beginAtZero: true, max: 30, ticks: { callback: pctTick } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return "Base " + brl(c[0].parsed.x); }, label: pctTip(2) } } } } };
+    });
+
+    /* T6 dois caminhos */
+    chart("gPF", function () {
+      var r = val("pfReceita"), d0 = r ? val("pfDesp") / r * 100 : 0, xs = [];
+      for (var d = 0; d <= 100; d += 2.5) xs.push(d);
+      var pres = irpf(r * 0.2).imp;
+      return { type: "line", data: { datasets: [
+        { label: "Resultado real", data: xs.map(function (d) { return { x: d, y: irpf(r * (1 - d / 100)).imp }; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Presunção de 20%", data: xs.map(function (d) { return { x: d, y: pres }; }), borderColor: tok("--gold"), backgroundColor: tok("--gold"), pointRadius: 0, borderWidth: 3 },
+        { label: "Suas despesas", data: [{ x: Math.min(100, d0), y: irpf(Math.max(0, r - val("pfDesp"))).imp }], borderColor: tok("--ink"), backgroundColor: tok("--ink"), pointRadius: 7, showLine: false }
+      ] }, options: { scales: { x: { type: "linear", min: 0, max: 100, title: { display: true, text: "Despesas comprovadas em % da receita", color: tok("--muted") }, ticks: { callback: pctTick } }, y: { beginAtZero: true, ticks: { callback: mil } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return "Despesas de " + fmt(c[0].parsed.x, 1) + "% da receita"; }, label: function (c) { return c.dataset.label + ": " + brl(c.parsed.y, 2); } } } } } };
+    });
+    ["pfReceita", "pfDesp"].forEach(function (id) { $(id).addEventListener("input", function () { draw("gIRPF"); draw("gPF"); }); });
+
+    /* T6 carga do Lucro Presumido */
+    var carga = function (R, fun) { var bI = R * 0.08; return (bI * 0.15 + Math.max(0, bI - 240000) * 0.1 + R * 0.12 * 0.09 + R * 0.0365 + (fun ? R * 0.0205 : 0)) / R * 100; };
+    chart("gLPcarga", function () {
+      var xs = []; for (var R = 500000; R <= 12000000; R += 250000) xs.push(R);
+      var r = val("lpReceita"), fun = $("lpFun").value === "1";
+      return { type: "line", data: { datasets: [
+        { label: "Sem Funrural", data: xs.map(function (R) { return { x: R, y: carga(R, false) }; }), borderColor: tok("--accent"), backgroundColor: tok("--accent"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Com Funrural PJ (2,05%)", data: xs.map(function (R) { return { x: R, y: carga(R, true) }; }), borderColor: tok("--gold"), backgroundColor: tok("--gold"), pointRadius: 0, tension: 0, borderWidth: 3 },
+        { label: "Receita do simulador", data: r > 0 && r <= 12000000 ? [{ x: r, y: carga(r, fun) }] : [], borderColor: tok("--ink"), backgroundColor: tok("--ink"), pointRadius: 6, showLine: false }
+      ] }, options: { scales: { x: { type: "linear", min: 500000, max: 12000000, title: { display: true, text: "Receita bruta anual (R$)", color: tok("--muted") }, ticks: { callback: mil } }, y: { min: 5, max: 9, ticks: { callback: function (v) { return fmt(v, 1) + "%"; } } } },
+        plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { title: function (c) { return "Receita " + brl(c[0].parsed.x); }, label: pctTip(2) } } } } };
+    });
+    $("lpReceita").addEventListener("input", function () { draw("gLPcarga"); });
+    $("lpFun").addEventListener("change", function () { draw("gLPcarga"); });
+    document.querySelectorAll("[data-lp]").forEach(function (b) { b.addEventListener("click", function () { draw("gLPcarga"); }); });
+  })();
 
   /* ---------- cadernos online ---------- */
   (function () {
